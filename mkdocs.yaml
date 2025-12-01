@@ -4,7 +4,8 @@ repo_url: https://github.com/velmasrikanth/Devops-Learning
 repo_name: GitHub Repository
 edit_uri: edit/main/docs/ # Allows users to click 'Edit' and go straight to the Markdown file
 
-# The Material for MkDocs Theme
+
+# The Material for MkDocs Theme (Responsible for colors and layout)
 theme:
   name: material
   palette:
@@ -19,6 +20,15 @@ theme:
     - search.highlight
     - toc.integrate # Puts the Table of Contents right next to the content
     - header.autohide
+
+# Enable Extra Markdown Features (The "alloptions" for content)
+markdown_extensions:
+  - admonition # Allows color boxes for notes/warnings
+  - codehilite # Required for proper syntax highlighting
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 
 # Site Navigation (Maps to the files in the 'docs/' folder)
 nav:
