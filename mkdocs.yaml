@@ -34,8 +34,8 @@ markdown_extensions:
 nav:
   - Home: index.md
   - 🐳 Docker Fundamentals:
-    - 01. Containers & Images: docker/01-containers.md
-    - 02. Networking Basics: docker/02-networking.md
+    - 01. Docker Basics: docker/docker-basics.md
+
   - ☸️ Kubernetes Deep Dive:
     - 01. Deployments: kubernetes/01-deployment.md
     - 02. Services & Ingress: kubernetes/02-services.md
