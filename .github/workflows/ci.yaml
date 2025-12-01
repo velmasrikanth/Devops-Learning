@@ -1,28 +1,45 @@
-# .github/workflows/ci.yml
-name: Deploy Docs
+name: Deploy Notes Website
 
 on:
   push:
     branches:
-      - main # Set this to your main branch name (main or master)
-  workflow_dispatch:
+      - main # Trigger on pushes to the main branch
+  workflow_dispatch: # Allows manual trigger from the GitHub UI
 
+# IMPORTANT: Set permissions needed for the workflow to deploy the site
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.x' # Use '3.x' to automatically use the latest stable 3 release
 
       - name: Install MkDocs and Material Theme
         run: pip install mkdocs mkdocs-material
 
+      - name: Build documentation
+        run: mkdocs build --clean # The built output goes into the default './site' directory
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './site' # Upload the output directory created by mkdocs build
+
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+        id: deployment
+        uses: actions/deploy-pages@v4
