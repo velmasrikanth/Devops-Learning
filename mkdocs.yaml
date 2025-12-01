@@ -1,0 +1,32 @@
+site_name: DevOps Learning Notes - Srikanth Velma
+site_url: https://velmasrikanth.github.io/Devops-Learning/
+repo_url: https://github.com/velmasrikanth/Devops-Learning
+repo_name: GitHub Repository
+edit_uri: edit/main/docs/ # Allows users to click 'Edit' and go straight to the Markdown file
+
+# The Material for MkDocs Theme
+theme:
+  name: material
+  palette:
+    # Set to a dark color scheme for a modern, code-friendly look
+    scheme: slate 
+    primary: indigo
+    accent: deep orange
+  features:
+    - content.tabs.link
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+    - toc.integrate # Puts the Table of Contents right next to the content
+    - header.autohide
+
+# Site Navigation (Maps to the files in the 'docs/' folder)
+nav:
+  - Home: index.md
+  - 🐳 Docker Fundamentals:
+    - 01. Containers & Images: docker/01-containers.md
+    - 02. Networking Basics: docker/02-networking.md
+  - ☸️ Kubernetes Deep Dive:
+    - 01. Deployments: kubernetes/01-deployment.md
+    - 02. Services & Ingress: kubernetes/02-services.md
+  - CI/CD & Automation: automation.md
