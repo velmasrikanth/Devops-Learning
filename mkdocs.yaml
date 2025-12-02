@@ -29,12 +29,24 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+
+plugins:
+  - glightbox
 
 # Site Navigation (Maps to the files in the 'docs/' folder)
 nav:
   - Home: index.md
   - 🐳 Docker Fundamentals:
     - 01. Docker Basics: docker/01-docker-basics.md
+    - 02. Docker Installation: docker/02-docker-installation.md
+    - 03. DockerFile: docker/03-dockerfile.md
+
+  - ☁️ Kode kloud 100 Days:
+    - 01. Azure Cloud-100 Days: kodekloud/01-100days-azure.md
+   
 
   - ☸️ Kubernetes Deep Dive:
     - 01. Deployments: kubernetes/01-deployment.md
