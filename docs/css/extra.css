@@ -1,0 +1,34 @@
+/* Custom logo sizing for MkDocs Material theme */
+
+/* Desktop / default: larger logo */
+.md-header-nav__title img,
+.md-header__logo img,
+.md-logo img,
+.md-header .md-logo {
+  height: 64px !important; /* change this value to make it bigger/smaller */
+  width: auto !important;
+  max-height: 64px !important;
+}
+
+/* If your theme uses a different class, also target common variants */
+.site-logo img,
+.brand img {
+  height: 64px !important;
+  width: auto !important;
+}
+
+/* Mobile: reduce size so header doesn't overflow */
+@media (max-width: 767px) {
+  .md-header-nav__title img,
+  .md-header__logo img,
+  .md-logo img {
+    height: 40px !important;
+    max-height: 40px !important;
+  }
+}
+
+/* If the logo appears small because of padding/scale, ensure image isn't constrained */
+.md-header .md-logo img {
+  display: block;
+  object-fit: contain;
+}
