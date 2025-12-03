@@ -5,9 +5,9 @@
 .md-header__logo img,
 .md-logo img,
 .md-header .md-logo {
-  height: 100px !important; /* change this value to make it bigger/smaller */
+  height: 200px !important; /* change this value to make it bigger/smaller */
   width: auto !important;
-  max-height: 64px !important;
+  max-height: 200px !important;
 }
 
 /* If your theme uses a different class, also target common variants */
@@ -36,7 +36,7 @@
 /* Site background and content styling: change these colors to taste. */
 /* Page background (behind the content) */
 html, body {
-  background: #f4f6f8; /* soft light-gray background instead of white */
+  background: #1573d1; /* soft light-gray background instead of white */
 }
 
 /* Keep header area using theme background (no change) */
