@@ -8,6 +8,7 @@ edit_uri: edit/main/docs/ # Allows users to click 'Edit' and go straight to the 
 # The Material for MkDocs Theme (Responsible for colors and layout)
 theme:
   name: material
+  custom_dir: docs/overrides
   logo: images/devops.png  # Path to your logo image
   palette:
     - scheme: default
