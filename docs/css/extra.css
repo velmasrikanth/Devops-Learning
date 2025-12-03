@@ -5,7 +5,7 @@
 .md-header__logo img,
 .md-logo img,
 .md-header .md-logo {
-  height: 64px !important; /* change this value to make it bigger/smaller */
+  height: 100px !important; /* change this value to make it bigger/smaller */
   width: auto !important;
   max-height: 64px !important;
 }
@@ -32,3 +32,34 @@
   display: block;
   object-fit: contain;
 }
+
+/* Site background and content styling: change these colors to taste. */
+/* Page background (behind the content) */
+html, body {
+  background: #f4f6f8; /* soft light-gray background instead of white */
+}
+
+/* Keep header area using theme background (no change) */
+.md-header {
+  background: var(--md-accent-fg-color, #3b4b8f);
+}
+
+/* Make the content area stand out: white card with subtle shadow */
+.md-typeset {
+  background: #ffffff; /* content card background */
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  padding: 2rem;
+}
+
+/* On very small screens, reduce padding so content fits */
+@media (max-width: 767px) {
+  .md-typeset {
+    padding: 1rem;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent; /* allow full-bleed content on mobile */
+  }
+}
+
+/* If you prefer a darker page background, replace #f4f6f8 with another hex. */
