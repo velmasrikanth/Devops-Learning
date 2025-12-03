@@ -91,12 +91,12 @@ markdown_extensions:
       custom_checkbox: true
   - tables
    
-  footer: |
-      <style>
-        .md-footer {
-          display: none;
-        }
-      </style>
+footer: |
+    <style>
+      .md-footer {
+        display: none;
+      }
+    </style>
 
 plugins:
   - glightbox
