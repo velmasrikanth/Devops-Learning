@@ -90,9 +90,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - tables
-   - toc:                 
-       permalink: true
-
+   
   footer: |
       <style>
         .md-footer {
