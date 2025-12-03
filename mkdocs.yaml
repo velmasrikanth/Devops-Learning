@@ -54,7 +54,7 @@ theme:
 
 # Enable Extra Markdown Features (The "alloptions" for content)
 markdown_extensions:
-- pymdownx.highlight:
+  - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
