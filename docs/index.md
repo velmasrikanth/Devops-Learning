@@ -1,4 +1,2 @@
----
-template: home.html
-title: Home
----
+# INTRODUCTION
+Welcome to my personal website! I'm <b>SRIKANTH VELMA</b>, a passionate learner of DevOps and cloud technologies. Tech stack: GitHub Actions, Docker, Kubernetes, Terraform, microservices projects, and DevOps system design concepts. This website contains my learning notes, materials, tutorials, and insights.
