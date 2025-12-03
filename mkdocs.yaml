@@ -27,30 +27,22 @@ theme:
   
   features:
     - content.tabs.link
-    - search.suggest
-    - search.highlight
-    - toc.integrate # Puts the Table of Contents right next to the content
-    - content.code.copy
-    - content.code.annotate
-    # - content.tabs.link
-    # - header.autohide
-    # - navigation.expand
+    - navigation.tabs
+    - navigation.sections
     - navigation.indexes
     - navigation.footer
-    - content.tooltips
-    - navigation.tabs
-    # - navigation.tabs.sticky
-    - navigation.sections
-    - navigation.expand
-    # - toc.integrate
     - navigation.top
     - navigation.instant
     - navigation.tracking
-    - header.autohide
+    - toc.integrate # Puts the Table of Contents right next to the content
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+    - search.suggest
     - search.highlight
     - search.share
-    - search.suggest
-    - toc.follow
+    - header.autohide
 
 # Enable Extra Markdown Features (The "alloptions" for content)
 markdown_extensions:
@@ -79,14 +71,12 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
-  - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.tilde
   - attr_list
   - md_in_html
   - def_list
   - meta
-  - md_in_html
   - pymdownx.tasklist:
       custom_checkbox: true
   - tables

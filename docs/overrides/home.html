@@ -228,25 +228,27 @@
     height: auto;
   }
 </style>
-
+{% endblock %}
+{% endblock %}
+{% block content %}
 <!-- Main site Entry button descriptions -->
 <section class="tx-container">
-    <div class="md-grid md-typeset">
-      <div class="tx-hero">
-        <div class="tx-hero__image">
-          <!-- <img src="assets/product-layers.png" draggable="false"> -->
+        <div class="md-grid md-typeset">
+            <div class="tx-hero">
+                <div class="tx-hero__image">
+                    <!-- <img src="assets/product-layers.png" draggable="false"> -->
+                </div>
+                <div style="margin: -2.4em 0 .64em">
+                    <h2 style="color: white;"><b>Introduction</b></h2>
+                    <p>Welcome to my personal website! I'm <b>SRIKANTH VELMA</b>, a passionate learner of DevOps and cloud technologies. Tech stack: GitHub Actions, Docker, Kubernetes, Terraform, microservices projects, and DevOps system design concepts. This website contains my learning notes, materials, tutorials, and insights.</p>
+                    {% if page.next_page %}
+                    <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
+                        Get started
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        <div style="margin: -2.4em 0 .64em">
-          <h2 style="color: white;"><b>Introduction</b></h2>
-          <p>Welcome to my personal website! I'm <b>SRIKANTH VELMA</b>, an passionate Learner about Devops and Cloud Tecnologies. Teck Stack- GitHub Actions, Docker, Kubernetes, Terraform, Micro services Projects, Devops system design Concepts. This website is contains my Learning Notes, materials, tutorials, and valuable insights.</p>
-          <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
-            Get started
-          </a>
-        </div>
-      </div>
-    </div>
 </section>
-
 {% endblock %}
-{% block content %}{% endblock %}
 {% block footer %}{% endblock %}
