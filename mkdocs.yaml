@@ -95,7 +95,6 @@ plugins:
   - glightbox
   - search:
       separator: '[\s\-]+'
-  - mkdocs_macros-plugin
   - minify:
       minify_html: true 
   - awesome-pages
