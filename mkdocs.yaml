@@ -8,8 +8,7 @@ edit_uri: edit/main/docs/ # Allows users to click 'Edit' and go straight to the 
 # The Material for MkDocs Theme (Responsible for colors and layout)
 theme:
   name: material
-  custom_dir: overrides  # Directory for custom CSS/JS files
-  logo: images/devops-logo.png  # Path to your logo image
+  logo: images/devops.png  # Path to your logo image
   palette:
     - scheme: default
       primary: indigo
@@ -91,12 +90,6 @@ markdown_extensions:
       custom_checkbox: true
   - tables
    
-footer: |
-    <style>
-      .md-footer {
-        display: none;
-      }
-    </style>
 
 plugins:
   - glightbox
