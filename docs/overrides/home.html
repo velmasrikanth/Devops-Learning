@@ -6,12 +6,12 @@
 <style>
 
     .md-main {
-        flex-grow: 0
+        flex-grow: 1 !important;
     }
 
     .md-main__inner {
-        display: flex;
-        height: 100%;
+        display: block;
+        /* avoid forcing full-height which can collapse content in some layouts */
     }
 
     .tx-container {

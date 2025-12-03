@@ -25,9 +25,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x' # Use '3.x' to automatically use the latest stable 3 release
+          cache: 'pip'
 
       - name: Install MkDocs and Material Theme
-        run: pip install mkdocs mkdocs-material mkdocs-glightbox mkdocs-minify-plugin mkdocs-awesome-pages-plugin pymdown-extensions mkdocs-git-revision-date-localized-plugin 
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements.txt
 
       - name: Build documentation
         run: mkdocs build --clean # The built output goes into the default './site' directory

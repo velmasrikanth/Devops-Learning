@@ -1,0 +1,21 @@
+{
+  // Workspace color & editor preferences
+  "workbench.colorTheme": "GitHub Dark",
+  "workbench.preferredDarkColorTheme": "GitHub Dark",
+  "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.lineHeight": 22,
+
+  // UI / editor color tweaks — tune these hex values to your taste
+  "workbench.colorCustomizations": {
+    "editor.background": "#0b1220",
+    "editorCursor.foreground": "#FFCC00",
+    "editorLineNumber.foreground": "#556270",
+    "editor.selectionBackground": "#26465388",
+    "activityBar.background": "#17202b",
+    "sideBar.background": "#0f1720",
+    "statusBar.background": "#0b1220",
+    "titleBar.activeBackground": "#0b1220"
+  }
+}

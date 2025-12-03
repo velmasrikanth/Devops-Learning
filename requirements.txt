@@ -1,0 +1,6 @@
+mkdocs
+mkdocs-material
+pymdown-extensions
+mkdocs-glightbox
+mkdocs-minify-plugin
+mkdocs-awesome-pages-plugin
