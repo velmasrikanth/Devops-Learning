@@ -29,7 +29,7 @@ jobs:
       - name: Install MkDocs and Material Theme
         run: pip install mkdocs mkdocs-material mkdocs-glightbox mkdocs-minify-plugin mkdocs-awesome-pages-plugin pymdown-extensions
       - name: Deploy documentation  
-        run: mkdocs deploy --force
+        run: mkdocs gh-deploy --force
 
       # - name: Build documentation
       #   run: mkdocs build --clean # The built output goes into the default './site' directory
