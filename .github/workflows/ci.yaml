@@ -28,20 +28,18 @@ jobs:
 
       - name: Install MkDocs and Material Theme
         run: pip install mkdocs mkdocs-material mkdocs-glightbox mkdocs-minify-plugin mkdocs-awesome-pages-plugin pymdown-extensions
-      - name: Deploy documentation  
-        run: mkdocs gh-deploy --force
 
-      # - name: Build documentation
-      #   run: mkdocs build --clean # The built output goes into the default './site' directory
+      - name: Build documentation
+        run: mkdocs build --clean # The built output goes into the default './site' directory
 
-      # - name: Configure GitHub Pages
-      #   uses: actions/configure-pages@v5
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     path: './site' # Upload the output directory created by mkdocs build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './site' # Upload the output directory created by mkdocs build
 
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
