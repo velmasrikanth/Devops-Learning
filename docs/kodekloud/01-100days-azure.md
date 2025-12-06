@@ -25,4 +25,26 @@ Create a simple azure with the above requirements with SSH Key or Password based
 ![kk_100](../images/kk_100_azure_2.png)
 ![kk_100](../images/kk_100_azure_2_1.png)
 
+## Day 3: Create an Azure VM through CLI
+1) Create a new Azure Virtual Machine named datacenter-vm using the Azure CLI.
+
+2) Use the Ubuntu2204 image and set the VM size to Standard_B2s.
+
+3) Make sure the admin username is set to azureuser and SSH keys are generated for secure access.
+
+4) Use Standard_LRS storage account, disk size must be 30GB and ensure the VM datacenter-vm is in the running state after creation.
+
+```sh
+az vm create \
+    --resource-group kml_rg_main-eeef3060ff8e4978 \
+    --name nautilus-vm \
+    --image ubuntu2204 \
+    --size Standard_B2s \
+    --admin-username azureuser \
+    --generate-ssh-keys \
+    --os-disk-size-gb 30 \
+    --storage-sku Standard_LRS
+```
+![kk_100](../images/kk_100_azure_3.png)
+
 
