@@ -112,6 +112,8 @@ nav:
     - 01. Docker Basics: docker/01-docker-basics.md
     - 02. Docker Installation: docker/02-docker-installation.md
     - 03. DockerFile: docker/03-dockerfile.md
+    - 04. Docker Images: docker/04-docker-images.md
+    - 05. Docker Containers: docker/05-docker-containers.md
 
   - ☁️ Kode kloud 100 Days:
     - 01. Azure Cloud-100 Days: kodekloud/01-100days-azure.md
