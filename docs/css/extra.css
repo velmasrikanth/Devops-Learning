@@ -144,10 +144,13 @@ h6::selection {
 /* Table of Contents (Right Sidebar) Active Item */
 .md-nav__link--active,
 .md-nav__item .md-nav__link--active {
-  color: #283593 !important;
-  /* Dark Indigo */
+  color: #ffffff !important;
+  /* White text for contrast against blue bg */
   font-weight: bold !important;
-  border-left: 2px solid #283593;
+  border-left: 4px solid #ffd700;
+  /* Gold marker */
+  background: rgba(0, 0, 0, 0.1);
+  /* Subtle dark backing */
   padding-left: 0.5em;
 }
 
