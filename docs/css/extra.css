@@ -5,7 +5,8 @@
 .md-header__logo img,
 .md-logo img,
 .md-header .md-logo {
-  height: 200px !important; /* change this value to make it bigger/smaller */
+  height: 200px !important;
+  /* change this value to make it bigger/smaller */
   width: auto !important;
   max-height: 200px !important;
 }
@@ -19,6 +20,7 @@
 
 /* Mobile: reduce size so header doesn't overflow */
 @media (max-width: 767px) {
+
   .md-header-nav__title img,
   .md-header__logo img,
   .md-logo img {
@@ -35,8 +37,10 @@
 
 /* Site background and content styling: change these colors to taste. */
 /* Page background (behind the content) */
-html, body {
-  background: #1573d1; /* soft light-gray background instead of white */
+html,
+body {
+  background: #1573d1;
+  /* soft light-gray background instead of white */
 }
 
 /* Keep header area using theme background (no change) */
@@ -46,9 +50,10 @@ html, body {
 
 /* Make the content area stand out: white card with subtle shadow */
 .md-typeset {
-  background: #ffffff; /* content card background */
+  background: #ffffff;
+  /* content card background */
   border-radius: 6px;
-  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
   padding: 2rem;
 }
 
@@ -58,7 +63,8 @@ html, body {
     padding: 1rem;
     border-radius: 0;
     box-shadow: none;
-    background: transparent; /* allow full-bleed content on mobile */
+    background: transparent;
+    /* allow full-bleed content on mobile */
   }
 }
 
@@ -66,12 +72,15 @@ html, body {
 
 /* Improve text selection visibility site-wide */
 ::selection {
-  background: rgba(30, 115, 230, 0.28); /* semi-opaque blue */
-  color: inherit;
+  background: #283593;
+  /* Dark Indigo */
+  color: #ffffff;
 }
+
 ::-moz-selection {
-  background: rgba(30, 115, 230, 0.28);
-  color: inherit;
+  background: #283593;
+  /* Dark Indigo */
+  color: #ffffff;
 }
 
 /* Make sure selection in specific regions is also clearly visible */
@@ -82,16 +91,33 @@ html, body {
 .md-main ::selection,
 code ::selection,
 pre ::selection {
-  background: rgba(30, 115, 230, 0.28);
-  color: inherit;
+  background: #283593;
+  color: #ffffff;
 }
 
 /* If the sidebar has a dark background, use a lighter, semi-transparent white for selection there */
-.md-sidebar, .md-sidebar .md-nav {
-  /* no-op: keep existing bg */
-}
+
+
 .md-sidebar ::selection,
 .md-nav ::selection {
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
   color: inherit;
+}
+
+/* Heading Improvements */
+.md-typeset h1 {
+  color: #1a237e;
+  /* Deep Indigo */
+  font-weight: 700;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.3em;
+}
+
+.md-typeset h2 {
+  color: #283593;
+  /* Indigo */
+  font-weight: 600;
+  margin-top: 1.5em;
+  border-bottom: 1px dotted #e0e0e0;
+  padding-bottom: 0.3em;
 }

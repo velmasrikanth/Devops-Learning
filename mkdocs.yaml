@@ -34,7 +34,7 @@ theme:
     - navigation.top
     - navigation.instant
     - navigation.tracking
-    - toc.integrate # Puts the Table of Contents right next to the content
+    # - toc.integrate # Puts the Table of Contents right next to the content
     - toc.follow
     - content.code.copy
     - content.code.annotate
@@ -120,8 +120,8 @@ nav:
     - 02. DevOps-100 Days: kodekloud/02-100days-devops.md
     - 03. Kubernetes-100 Days: kodekloud/03-100days-kubernetes.md
   - ☸️ Kubernetes Deep Dive:
-    - 01. Deployments: kubernetes/01-deployment.md
-    - 02. Services & Ingress: kubernetes/02-services.md
+    - 00. Introduction: kubernetes/01-k8s-introduction.md
+    - 01. Core Concepts (Deep Dive): kubernetes/02-k8s-concepts.md
   - CI/CD & Automation: automation.md
 
   - About:
