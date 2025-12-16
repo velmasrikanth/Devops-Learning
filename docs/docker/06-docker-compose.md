@@ -51,9 +51,146 @@ networks:
 | `restart` | Restart policy. | `restart: always` |
 | `command` | Override the default command. | `command: python manage.py runserver` |
 
+
 ---
 
-## 2. Docker Compose CLI Commands
+## 2. Detailed Service Configuration
+
+The `services` block is the most critical part of the Compose file. It defines the containers that will run.
+
+### `build`
+Defines how to build the image from source code. Learn more about [Docker Build](03-docker-images.md).
+
+*   **`context`**: The path to the directory containing the Dockerfile (relative to the compose file).
+*   **`dockerfile`**: Alternate name for the Dockerfile (default is `Dockerfile`).
+*   **`args`**: Build arguments to pass to the build process.
+
+```yaml
+services:
+  webapp:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+      args:
+        - APP_VERSION=1.0
+```
+
+### `image`
+Specifies the image to start the container from.
+*   If the image doesn't exist locally, Compose attempts to pull it.
+*   If `build` is also specified, `image` defines the name/tag for the built image.
+
+```yaml
+image: nginx:alpine                  # Pull from hub
+image: my-registry.com/app:v1        # Private registry
+```
+
+### `ports`
+Exposes container ports to the host machine.
+
+*   **Short Syntax**: `"HOST_PORT:CONTAINER_PORT"`
+*   **Ranges**: `"8000-8010:8000-8010"`
+*   **Long Syntax**: Allows defining protocol (tcp/udp) and mode.
+
+```yaml
+ports:
+  - "3000:3000"             # Map host 3000 to container 3000
+  - "127.0.0.1:8080:80"     # Limit binding to localhost
+  - target: 80
+    published: 8080
+    protocol: tcp
+    mode: host
+```
+
+### `environment` & `env_file`
+Define environment variables inside the container.
+
+*   **`environment`**: Inline key-value pairs (array or map syntax).
+*   **`env_file`**: Path to a file containing variables (`KEY=VAL`).
+
+```yaml
+environment:
+  - DEBUG=true
+  - DB_HOST=postgres
+env_file:
+  - .env.production
+```
+
+### `volumes` (Service Level)
+Mounts host paths or named volumes into the service.
+
+*   **Short Syntax**: `"SOURCE:TARGET[:MODE]"`
+    *   `SOURCE`: Host path or Named Volume.
+    *   `TARGET`: Path inside the container.
+    *   `MODE`: `ro` (read-only) or `rw` (read-write).
+
+```yaml
+volumes:
+  - ./code:/app             # Bind mount (updates live)
+  - db-data:/var/lib/mysql  # Named volume (persistent)
+  - /opt/data:/app/data:ro  # Read-only bind mount
+```
+
+### `networks` (Service Level)
+Defines which networks the service joins. Services on the same network can reach each other by service name (DNS).
+
+```yaml
+services:
+  web:
+    networks:
+      - frontend
+      - backend
+```
+
+---
+
+## 3. Volumes and Networks Explained
+
+### Volumes in Detail
+Volumes are the preferred mechanism for persisting data generate by and used by Docker containers.
+
+1.  **Named Volumes**:
+    *   Managed completely by Docker.
+    *   Best for database storage or data shared between containers.
+    *   Defined in the top-level `volumes:` key.
+
+2.  **Bind Mounts**:
+    *   Maps a specific file or directory on the host to the container.
+    *   Best for development (sharing source code).
+
+**Top-Level Volume Definition:**
+```yaml
+volumes:
+  db-data:
+    driver: local             # Default driver
+    driver_opts:              # Advanced options (e.g. NFS)
+      type: none
+      device: /path/to/dir
+      o: bind
+```
+
+### Networks in Detail
+Networks determine how containers communicate with each other and the outside world.
+
+*   **`bridge`**: The default driver. detailed isolation.
+*   **`host`**: Removes network isolation. The container shares the host's networking namespace.
+*   **`overlay`**: Used for Swarm services to communicate across multiple nodes.
+*   **`none`**: Disables networking.
+
+**Top-Level Network Definition:**
+```yaml
+networks:
+  app-net:
+    driver: bridge
+    ipam:                     # Custom IP Address Management
+      config:
+        - subnet: 172.16.238.0/24
+```
+
+---
+
+
+## 4. Docker Compose CLI Commands
 
 The `docker-compose` (or `docker compose` in V2) CLI is used to manage the lifecycle of the application defined in the YAML file.
 
@@ -93,7 +230,7 @@ docker-compose exec web sh
 
 ---
 
-## 3. Examples
+## 5. Examples
 
 ### Example 1: Simple Web Server
 
