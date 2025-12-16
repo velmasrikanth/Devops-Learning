@@ -4,7 +4,7 @@ This guide is designed to be **Interview Ready**. For every concept, we cover **
 
 ---
 
-# 1. Workloads (The "What")
+## 1. Workloads (The "What")
 
 ## 1.1 Pods
 **What:** The smallest deployable unit in Kubernetes. It represents a single instance of a running process.
@@ -161,7 +161,7 @@ spec:
 
 ---
 
-# 2. Configuration (The "Settings")
+## 2. Configuration (The "Settings")
 
 ## 2.1 ConfigMaps vs Secrets (Interview Question)
 **Q: When to use ConfigMap vs Secret?**
@@ -199,7 +199,7 @@ data:
 
 ---
 
-# 3. Networking (The "Connectivity")
+## 3. Networking (The "Connectivity")
 
 ## 3.1 Services Types (Interview Question)
 **Q: Explain ClusterIP vs NodePort vs LoadBalancer.**
@@ -281,7 +281,7 @@ spec:
 
 ---
 
-# 4. Storage (The "Persistence")
+## 4. Storage (The "Persistence")
 
 ## 4.1 PV vs PVC vs StorageClass (Interview Question)
 *   **PersistentVolume (PV):** The actual hard drive (EBS volume, NFS export). Low-level resource.

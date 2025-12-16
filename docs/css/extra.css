@@ -121,3 +121,38 @@ pre ::selection {
   border-bottom: 1px dotted #e0e0e0;
   padding-bottom: 0.3em;
 }
+
+/* Layout Wideners */
+.md-grid {
+  max-width: 1400px;
+  /* Make the page much wider */
+}
+
+/* Specific Selection for Headings */
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
+h6::selection {
+  background: #1a237e;
+  /* Even darker indigo */
+  color: #ffd700;
+  /* Gold text */
+}
+
+/* Table of Contents (Right Sidebar) Active Item */
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active {
+  color: #283593 !important;
+  /* Dark Indigo */
+  font-weight: bold !important;
+  border-left: 2px solid #283593;
+  padding-left: 0.5em;
+}
+
+/* Main Navigation (Left Sidebar) Active Item */
+.md-nav__item--active>.md-nav__link {
+  color: #283593 !important;
+  font-weight: bold;
+}
