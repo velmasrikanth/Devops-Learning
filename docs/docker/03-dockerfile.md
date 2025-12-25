@@ -275,3 +275,54 @@ RUN echo "This runs in bash"
 SHELL ["powershell", "-command"]
 RUN Write-Host "This runs in powershell"
 ```
+
+## Dockerfile for different languages
+
+### Dockerfile for Node.js
+* Procedure to deploy Node.js application Manualy:
+    * **package.json** - contains the dependencies and scripts for the application
+    * **index.js/app.js** - contains the application code
+    * we need install nodejs and npm
+    * After that we need to install the dependencies using ```npm install```
+    * It will install the dependencies and create a **node_modules** directory and create **package-lock.json** file
+    * We need to build the application using ```npm run build```
+    * We need to start the application using ```npm run start```
+    
+* Procedure to deploy Node.js application using Dockerfile:
+    * Select suitable node base image
+    * Create working directory
+    * Copy package.json and package-lock.json to working directory
+    * Install dependencies
+    * Copy application code to working directory
+    * Build the application
+    * Expose the  port
+    * Define the command to run the application
+
+    * Example Simple Dockerfile:
+    ```dockerfile
+    FROM node:20-alpine
+    WORKDIR /app
+    COPY package*.json .
+    RUN npm install
+    COPY . .
+    RUN npm run build
+    EXPOSE 3000
+    CMD ["node", "index.js"]
+    ```
+    * Example Dockerfile with multi-stage build:
+    ```dockerfile
+    FROM node:20-alpine AS builder
+    WORKDIR /app
+    COPY package*.json .
+    RUN npm clean install && npm cache clean --force 
+    COPY . .
+    RUN npm run build
+    
+    FROM node:20-alpine AS runner
+    WORKDIR /app
+    COPY --from=builder /app/build /app/build
+    EXPOSE 3000
+    CMD ["node", "index.js"]
+    ```
+    
+

@@ -123,7 +123,10 @@ nav:
     - 00. Introduction: kubernetes/01-k8s-introduction.md
     - 01. Core Concepts (Deep Dive): kubernetes/02-k8s-concepts.md
   - CI/CD & Automation: automation.md
-
+  - Terraform:
+    - 01. Introduction: terraform/01-introduction.md
+    - 02. Provider: terraform/02-provider.md
+    - 03. Basic Workflow: terraform/03-basic-workflow.md
   - About:
     - About Me: about.md
   - Contact: 
