@@ -127,6 +127,7 @@ nav:
     - 01. Introduction: terraform/01-introduction.md
     - 02. Provider: terraform/02-provider.md
     - 03. Basic Workflow: terraform/03-basic-workflow.md
+    - 04. State File: terraform/04-statefile.md
   - About:
     - About Me: about.md
   - Contact: 
