@@ -128,6 +128,7 @@ nav:
     - 02. Provider: terraform/02-provider.md
     - 03. Basic Workflow: terraform/03-basic-workflow.md
     - 04. State File: terraform/04-statefile.md
+    - 05. Variables: terraform/05-variables.md
   - About:
     - About Me: about.md
   - Contact: 

@@ -27,7 +27,7 @@
 * We can store the state file in the Azure Blob Storage.
 * We need to create a Storage Account in Azure and then create a container in it.
 ```powershell
-az resource group create --name <resource-group-name> --location <location>
+az group create --name <resource-group-name> --location <location>
 az storage account create --name <storage-account-name> --resource-group <resource-group-name> --location <location> --sku Standard_LRS
 az storage container create --name <container-name> --account-name <storage-account-name>
 ```
@@ -36,7 +36,7 @@ Example
 #!/bin/bash
 
 RESOURCE_GROUP_NAME="tfstate"
-LOCATION="central india"
+LOCATION="centralindia"
 STORAGE_ACCOUNT_NAME="vstfstatestorage"
 CONTAINER_NAME="tfstate"
 
