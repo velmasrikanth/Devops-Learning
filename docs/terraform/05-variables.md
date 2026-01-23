@@ -116,85 +116,85 @@ variable "env" {
     * **Number** - Numeric values
     * **Boolean** - True/False values
 
-1. **String**
-* A simple text value
+  1. **String**
+  * A simple text value
 
-* **Used for:**
-  * Resource names
-  * Regions
-  * SKUs
-  * Environment names
+    * **Used for:**
+    * Resource names
+    * Regions
+    * SKUs
+    * Environment names
 
-```hcl
-variable "env" {
-  type = string
-  default = "dev"
-  description = "Environment name"
-}
-variable "location" {
-  type = string
-  default = "centralindia"
-  description = "Azure region"
-}
-```
-```hcl
-resource "azurerm_resource_group" "rg" {
-  name = "${var.env}-rg"
-  location = var.location
-}
-```
+    ```hcl
+    variable "env" {
+      type = string
+      default = "dev"
+      description = "Environment name"
+    }
+    variable "location" {
+      type = string
+      default = "centralindia"
+      description = "Azure region"
+    }
+    ```
+    ```hcl
+    resource "azurerm_resource_group" "rg" {
+      name = "${var.env}-rg"
+      location = var.location
+    }
+    ```
 
-* **Key Points:**
-  * Most Used type
-  * Always Quoted (" ")
-  * Used for Identifiers and Names 
-  
-2. **Number**
-* A simple numeric value (integers or decimals)
+    * **Key Points:**
+    * Most Used type
+    * Always Quoted (" ")
+    * Used for Identifiers and Names 
 
-* **Used for:**
-  * VM count
-  * Disk size
-  * Node count
+  2. **Number**
+    * A simple numeric value (integers or decimals)
 
-```hcl
-variable "vm_count" {
-  type = number
-  default = 1
-}
-```
-```hcl
-resource "azurerm_virtual_machine" "vm" {
-  count = var.vm_count
-}
-```
+    * **Used for:**
+    * VM count
+    * Disk size
+    * Node count
 
-* **Key Points:**
-  * Always Unquoted (1, 2, 3)
-  * Terraform decides int vs float automatically
+    ```hcl
+    variable "vm_count" {
+      type = number
+      default = 1
+    }
+    ```
+    ```hcl
+    resource "azurerm_virtual_machine" "vm" {
+      count = var.vm_count
+    }
+    ```
 
-3. **Boolean**
-* A simple true/false value
+    * **Key Points:**
+    * Always Unquoted (1, 2, 3)
+    * Terraform decides int vs float automatically
 
-* **Used for:**
-  * Feature flags
-  * Enable/disable components
+  3. **Boolean**
+    * A simple true/false value
 
-```hcl
-variable "enable_public_ip" {
-  type = bool
-  default = true
-}
-```
-```hcl
-resource "azurerm_virtual_machine" "vm" {
-  public_ip_address = var.enable_public_ip
-}
-```
+    * **Used for:**
+    * Feature flags
+    * Enable/disable components
 
-* **Key Points:**
-  * Always Unquoted (true, false) - If you put in quotes it will be string
-  * Used for feature flags
+    ```hcl
+    variable "enable_public_ip" {
+      type = bool
+      default = true
+    }
+    ``` 
+    ```hcl
+    resource "azurerm_virtual_machine" "vm" {
+      public_ip_address = var.enable_public_ip
+    }
+    ```
+
+    * **Key Points:**
+    * Always Unquoted (true, false) - If you put in quotes it will be string
+    * Used for feature flags
 
 #### 1.4.2 Complex Data Types
 * These are multiple collection of values
@@ -214,27 +214,26 @@ resource "azurerm_virtual_machine" "vm" {
   - **Types:** list, tuple.
   - **Usage:** When order matters (e.g., priority, sequence).
 
-```hcl
-variable "ports" {
-  type    = list(number)
-  default = [22, 80, 443]
-}
-# ports[0] = 22, ports[1] = 80, ports[2] = 443
-```
+  ```hcl
+  variable "ports" {
+    type    = list(number)
+    default = [22, 80, 443]
+  }
+  # ports[0] = 22, ports[1] = 80, ports[2] = 443
+  ```
 * 👉 If you loop over this list, the rules will be created in the same order. Useful when priority or sequence matters.
 
 2. **Unordered**
   - **Definition:** The sequence of elements doesn't matter. Terraform doesn't preserve the order.
   - **Implication:** You can't access elements by position (index).
   - **Types:** `set`, `map`, `object`.
-```hcl
-variable "subnets" {
-  type    = set(string)
-  default = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
-}
-
-# subnet1, subnet2, subnet3 (order not guaranteed)
-```
+  ```hcl
+  variable "subnets" {
+    type    = set(string)
+    default = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
+  }
+  # subnet1, subnet2, subnet3 (order not guaranteed)
+  ```
   
 * 👉 If you loop over this set, the order might be different each time. Useful when order doesn't matter.
 * 👉 Terraform doesn’t care about order here. You just know the set contains {10.0.0.0/24, 10.0.1.0/24, 10.0.2.0/24}. Perfect when uniqueness is more important than order.
@@ -244,35 +243,35 @@ variable "subnets" {
   - **Implication:**  Lets you model real‑world structures (e.g., AKS node pools, VM configs).
   - **Types:**  Any complex type can be nested (e.g.,`map(object(...))`, `list(object(...))`)
 
-```hcl
-variable "node_pools" {
-  type = map(object({
-    vm_size            = string
-    node_count         = number
-    enable_auto_scaling = bool
-  }))
-  default = {
-    system = {
-      vm_size            = "Standard_DS2_v2"
-      node_count         = 2
-      enable_auto_scaling = false
-    }
-    user = {
-      vm_size            = "Standard_DS3_v2"
-      node_count         = 3
-      enable_auto_scaling = true
+  ```hcl
+  variable "node_pools" {
+    type = map(object({
+      vm_size            = string
+      node_count         = number
+      enable_auto_scaling = bool
+    }))
+    default = {
+      system = {
+        vm_size            = "Standard_DS2_v2"
+        node_count         = 2
+        enable_auto_scaling = false
+      }
+      user = {
+        vm_size            = "Standard_DS3_v2"
+        node_count         = 3
+        enable_auto_scaling = true
+      }
     }
   }
-}
 
-resource "azurerm_kubernetes_cluster_node_pool" "pool" {
-    for_each            = var.node_pools
-    name                = each.key
-    vm_size             = each.value.vm_size
-    node_count          = each.value.node_count
-    enable_auto_scaling = each.value.enable_auto_scaling
-}   
-```   
+  resource "azurerm_kubernetes_cluster_node_pool" "pool" {
+      for_each            = var.node_pools
+      name                = each.key
+      vm_size             = each.value.vm_size
+      node_count          = each.value.node_count
+      enable_auto_scaling = each.value.enable_auto_scaling
+  }   
+  ```   
 * 👉 Here, you have a map (unordered keys: string, values: object) containing objects (structured configs). That’s nesting.
 
 * Now let's see about Complex Data Types    
