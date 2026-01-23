@@ -116,85 +116,85 @@ variable "env" {
     * **Number** - Numeric values
     * **Boolean** - True/False values
 
-  1. **String**
-  * A simple text value
+**String**
+* A simple text value
 
-    * **Used for:**
-    * Resource names
-    * Regions
-    * SKUs
-    * Environment names
+**Used for:**
+* Resource names
+* Regions
+* SKUs
+* Environment names
 
-    ```hcl
-    variable "env" {
-      type = string
-      default = "dev"
-      description = "Environment name"
-    }
-    variable "location" {
-      type = string
-      default = "centralindia"
-      description = "Azure region"
-    }
-    ```
-    ```hcl
-    resource "azurerm_resource_group" "rg" {
-      name = "${var.env}-rg"
-      location = var.location
-    }
-    ```
+```hcl
+variable "env" {
+  type = string
+  default = "dev"
+  description = "Environment name"
+}
+variable "location" {
+  type = string
+  default = "centralindia"
+  description = "Azure region"
+}
+```
+```hcl
+resource "azurerm_resource_group" "rg" {
+  name = "${var.env}-rg"
+  location = var.location
+}
+```
 
-    * **Key Points:**
-    * Most Used type
-    * Always Quoted (" ")
-    * Used for Identifiers and Names 
+**Key Points:**
+* Most Used type
+* Always Quoted (" ")
+* Used for Identifiers and Names 
 
-  2. **Number**
-    * A simple numeric value (integers or decimals)
+**Number**
+* A simple numeric value (integers or decimals)
 
-    * **Used for:**
-    * VM count
-    * Disk size
-    * Node count
+**Used for:**
+* VM count
+* Disk size
+* Node count
 
-    ```hcl
-    variable "vm_count" {
-      type = number
-      default = 1
-    }
-    ```
-    ```hcl
-    resource "azurerm_virtual_machine" "vm" {
-      count = var.vm_count
-    }
-    ```
+```hcl
+variable "vm_count" {
+  type = number
+  default = 1
+}
+```
+```hcl
+resource "azurerm_virtual_machine" "vm" {
+  count = var.vm_count
+}
+```
 
-    * **Key Points:**
-    * Always Unquoted (1, 2, 3)
-    * Terraform decides int vs float automatically
+**Key Points:**
+* Always Unquoted (1, 2, 3)
+* Terraform decides int vs float automatically
 
-  3. **Boolean**
-    * A simple true/false value
+**Boolean**
+* A simple true/false value
 
-    * **Used for:**
-    * Feature flags
-    * Enable/disable components
+**Used for:**
+* Feature flags
+* Enable/disable components
 
-    ```hcl
-    variable "enable_public_ip" {
-      type = bool
-      default = true
-    }
-    ``` 
-    ```hcl
-    resource "azurerm_virtual_machine" "vm" {
-      public_ip_address = var.enable_public_ip
-    }
-    ```
+```hcl
+variable "enable_public_ip" {
+  type = bool
+  default = true
+}
+``` 
+```hcl
+resource "azurerm_virtual_machine" "vm" {
+  public_ip_address = var.enable_public_ip
+}
+```
 
-    * **Key Points:**
-    * Always Unquoted (true, false) - If you put in quotes it will be string
-    * Used for feature flags
+**Key Points:**
+* Always Unquoted (true, false) - If you put in quotes it will be string
+* Used for feature flags
 
 #### 1.4.2 Complex Data Types
 * These are multiple collection of values
