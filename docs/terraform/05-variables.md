@@ -206,68 +206,72 @@ resource "azurerm_virtual_machine" "vm" {
 
 * First we will see what is Ordered and Unordered and Nested
 * 📚 **Ordered** vs **Unordered** 
-    1. **Ordered**
-    - **Definition:** The sequence of elements matters. Terraform preserves the order you define.
-    - **Implication:** You can access elements by their position (index).
-    - **Types:** list, tuple.
-  ```hcl
-    variable "ports" {
-  type    = list(number)
-  default = [22, 80, 443]
-  }
-  # ports[0] = 22, ports[1] = 80, ports[2] = 443
-   ```
-    * 👉 If you loop over this list, the rules will be created in the same order. Useful when priority or sequence matters.
 
-    2. **Unordered**
-    - **Definition:** The sequence of elements doesn't matter. Terraform doesn't preserve the order.
-    - **Implication:** You can't access elements by position (index).
-    - **Types:** `set`, `map`, `object`.
-   ```hcl
-    variable "subnets" {
+1. **Ordered**
+  - **Definition:** The sequence of elements matters. Terraform preserves the order you define.
+  - **Implication:** You can access elements by their position (index).
+  - **Types:** list, tuple.
+  - **Usage:** When order matters (e.g., priority, sequence).
+```hcl
+variable "ports" {
+type    = list(number)
+default = [22, 80, 443]
+}
+# ports[0] = 22, ports[1] = 80, ports[2] = 443
+  ```
+  * 👉 If you loop over this list, the rules will be created in the same order. Useful when priority or sequence matters.
+
+2. **Unordered**
+  - **Definition:** The sequence of elements doesn't matter. Terraform doesn't preserve the order.
+  - **Implication:** You can't access elements by position (index).
+  - **Types:** `set`, `map`, `object`.
+  ```hcl
+  variable "subnets" {
   type    = set(string)
   default = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
-   }
+  }
 
-   # subnet1, subnet2, subnet3 (order not guaranteed)
-   ```
-   * 👉 If you loop over this set, the order might be different each time. Useful when order doesn't matter.
-   * 👉 Terraform doesn’t care about order here. You just know the set contains {10.0.0.0/24, 10.0.1.0/24, 10.0.2.0/24}. Perfect when uniqueness is more important than order.
-  * 🧩 **Nested**
-   - **Definition:** - Nested means combining one complex type inside another (like a hierarchy).
-   - **Implication:**  Lets you model real‑world structures (e.g., AKS node pools, VM configs).
-   - **Types:**  Any complex type can be nested (e.g.,`map(object(...))`, `list(object(...))`)
+  # subnet1, subnet2, subnet3 (order not guaranteed)
+  ```
+  
+  * 👉 If you loop over this set, the order might be different each time. Useful when order doesn't matter.
+  * 👉 Terraform doesn’t care about order here. You just know the set contains {10.0.0.0/24, 10.0.1.0/24, 10.0.2.0/24}. Perfect when uniqueness is more important than order.
+  
+* 🧩 **Nested**
+  - **Definition:** - Nested means combining one complex type inside another (like a hierarchy).
+  - **Implication:**  Lets you model real‑world structures (e.g., AKS node pools, VM configs).
+  - **Types:**  Any complex type can be nested (e.g.,`map(object(...))`, `list(object(...))`)
 
-    ```hcl
-        variable "node_pools" {
-      type = map(object({
-        vm_size            = string
-        node_count         = number
-        enable_auto_scaling = bool
-      }))
-      default = {
-        system = {
-          vm_size            = "Standard_DS2_v2"
-          node_count         = 2
-          enable_auto_scaling = false
-        }
-        user = {
-          vm_size            = "Standard_DS3_v2"
-          node_count         = 3
-          enable_auto_scaling = true
-        }
+  ```hcl
+    variable "node_pools" {
+    type = map(object({
+      vm_size            = string
+      node_count         = number
+      enable_auto_scaling = bool
+    }))
+    default = {
+      system = {
+        vm_size            = "Standard_DS2_v2"
+        node_count         = 2
+        enable_auto_scaling = false
+      }
+      user = {
+        vm_size            = "Standard_DS3_v2"
+        node_count         = 3
+        enable_auto_scaling = true
       }
     }
+  }
 
-    resource "azurerm_kubernetes_cluster_node_pool" "pool" {
-      for_each            = var.node_pools
-      name                = each.key
-      vm_size             = each.value.vm_size
-      node_count          = each.value.node_count
-      enable_auto_scaling = each.value.enable_auto_scaling
-    }   
-    ```   
-    * 👉 Here, you have a map (unordered keys: , ) containing objects (structured configs). That’s nesting.
+  resource "azurerm_kubernetes_cluster_node_pool" "pool" {
+    for_each            = var.node_pools
+    name                = each.key
+    vm_size             = each.value.vm_size
+    node_count          = each.value.node_count
+    enable_auto_scaling = each.value.enable_auto_scaling
+  }   
+  ```   
+  * 👉 Here, you have a map (unordered keys: , ) containing objects (structured configs). That’s nesting.
 
 * Now let's see about Complex Data Types    
 
