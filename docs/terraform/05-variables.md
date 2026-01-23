@@ -120,10 +120,10 @@ variable "env" {
 * A simple text value
 
 **Used for:**
-  * Resource names
-  * Regions
-  * SKUs
-  * Environment names
+* Resource names
+* Regions
+* SKUs
+* Environment names
 
 ```hcl
 variable "env" {
@@ -138,16 +138,16 @@ variable "location" {
 }
 ```
 ```hcl
-resource "azurerm_resource_grou" "rg" {
+resource "azurerm_resource_group" "rg" {
   name = "${var.env}-rg"
   location = var.location
 }
 ```
 
 **Key Points:**
-  * Most Used type
-  * Always Quoted (" ")
-  * Used Identifiers and Names 
+* Most Used type
+* Always Quoted (" ")
+* Used for Identifiers and Names 
   
 2. **Number**
 * A simple numeric value (integers or decimals)
@@ -172,7 +172,6 @@ resource "azurerm_virtual_machine" "vm" {
 **Key Points:**
 * Always Unquoted (1, 2, 3)
 * Terraform decides int vs float automatically
-
 3. **Boolean**
 * A simple true/false value
 
@@ -236,7 +235,7 @@ default = [22, 80, 443]
   
   * 👉 If you loop over this set, the order might be different each time. Useful when order doesn't matter.
   * 👉 Terraform doesn’t care about order here. You just know the set contains {10.0.0.0/24, 10.0.1.0/24, 10.0.2.0/24}. Perfect when uniqueness is more important than order.
-  
+
 * 🧩 **Nested**
   - **Definition:** - Nested means combining one complex type inside another (like a hierarchy).
   - **Implication:**  Lets you model real‑world structures (e.g., AKS node pools, VM configs).
@@ -271,7 +270,7 @@ default = [22, 80, 443]
     enable_auto_scaling = each.value.enable_auto_scaling
   }   
   ```   
-  * 👉 Here, you have a map (unordered keys: , ) containing objects (structured configs). That’s nesting.
+  * 👉 Here, you have a map (unordered keys: string, values: object) containing objects (structured configs). That’s nesting.
 
 * Now let's see about Complex Data Types    
 
@@ -372,7 +371,8 @@ env      = "dev"
 ```
 
 **CLI**
-```terraform apply -var="env=prod"
+```bash
+terraform apply -var="env=prod"
 ```
 **Environment Variable**
 ```tf
