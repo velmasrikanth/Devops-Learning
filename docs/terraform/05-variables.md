@@ -119,11 +119,11 @@ variable "env" {
 1. **String**
 * A simple text value
 
-**Used for:**
-* Resource names
-* Regions
-* SKUs
-* Environment names
+* **Used for:**
+  * Resource names
+  * Regions
+  * SKUs
+  * Environment names
 
 ```hcl
 variable "env" {
@@ -144,18 +144,18 @@ resource "azurerm_resource_group" "rg" {
 }
 ```
 
-**Key Points:**
-* Most Used type
-* Always Quoted (" ")
-* Used for Identifiers and Names 
+* **Key Points:**
+  * Most Used type
+  * Always Quoted (" ")
+  * Used for Identifiers and Names 
   
 2. **Number**
 * A simple numeric value (integers or decimals)
 
-**Used for:**
-* VM count
-* Disk size
-* Node count
+* **Used for:**
+  * VM count
+  * Disk size
+  * Node count
 
 ```hcl
 variable "vm_count" {
@@ -169,15 +169,16 @@ resource "azurerm_virtual_machine" "vm" {
 }
 ```
 
-**Key Points:**
-* Always Unquoted (1, 2, 3)
-* Terraform decides int vs float automatically
+* **Key Points:**
+  * Always Unquoted (1, 2, 3)
+  * Terraform decides int vs float automatically
+
 3. **Boolean**
 * A simple true/false value
 
-**Used for:**
-* Feature flags
-* Enable/disable components
+* **Used for:**
+  * Feature flags
+  * Enable/disable components
 
 ```hcl
 variable "enable_public_ip" {
@@ -191,9 +192,10 @@ resource "azurerm_virtual_machine" "vm" {
 }
 ```
 
-**Key Points:**
-* Always Unquoted (true, false) - If you put in quotes it will be string
-* Used for feature flags
+* **Key Points:**
+  * Always Unquoted (true, false) - If you put in quotes it will be string
+  * Used for feature flags
+
 #### 1.4.2 Complex Data Types
 * These are multiple collection of values
 * Examples:
@@ -204,73 +206,74 @@ resource "azurerm_virtual_machine" "vm" {
     * **Object** - Group of related values
 
 * First we will see what is Ordered and Unordered and Nested
-* 📚 **Ordered** vs **Unordered** 
+* 📚 **Ordered** vs **Unordered** vs **Nested**
 
 1. **Ordered**
   - **Definition:** The sequence of elements matters. Terraform preserves the order you define.
   - **Implication:** You can access elements by their position (index).
   - **Types:** list, tuple.
   - **Usage:** When order matters (e.g., priority, sequence).
+
 ```hcl
 variable "ports" {
-type    = list(number)
-default = [22, 80, 443]
+  type    = list(number)
+  default = [22, 80, 443]
 }
 # ports[0] = 22, ports[1] = 80, ports[2] = 443
-  ```
-  * 👉 If you loop over this list, the rules will be created in the same order. Useful when priority or sequence matters.
+```
+* 👉 If you loop over this list, the rules will be created in the same order. Useful when priority or sequence matters.
 
 2. **Unordered**
   - **Definition:** The sequence of elements doesn't matter. Terraform doesn't preserve the order.
   - **Implication:** You can't access elements by position (index).
   - **Types:** `set`, `map`, `object`.
-  ```hcl
-  variable "subnets" {
+```hcl
+variable "subnets" {
   type    = set(string)
   default = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
-  }
+}
 
-  # subnet1, subnet2, subnet3 (order not guaranteed)
-  ```
+# subnet1, subnet2, subnet3 (order not guaranteed)
+```
   
-  * 👉 If you loop over this set, the order might be different each time. Useful when order doesn't matter.
-  * 👉 Terraform doesn’t care about order here. You just know the set contains {10.0.0.0/24, 10.0.1.0/24, 10.0.2.0/24}. Perfect when uniqueness is more important than order.
+* 👉 If you loop over this set, the order might be different each time. Useful when order doesn't matter.
+* 👉 Terraform doesn’t care about order here. You just know the set contains {10.0.0.0/24, 10.0.1.0/24, 10.0.2.0/24}. Perfect when uniqueness is more important than order.
 
-* 🧩 **Nested**
+3. **Nested**
   - **Definition:** - Nested means combining one complex type inside another (like a hierarchy).
   - **Implication:**  Lets you model real‑world structures (e.g., AKS node pools, VM configs).
   - **Types:**  Any complex type can be nested (e.g.,`map(object(...))`, `list(object(...))`)
 
-  ```hcl
-    variable "node_pools" {
-    type = map(object({
-      vm_size            = string
-      node_count         = number
-      enable_auto_scaling = bool
-    }))
-    default = {
-      system = {
-        vm_size            = "Standard_DS2_v2"
-        node_count         = 2
-        enable_auto_scaling = false
-      }
-      user = {
-        vm_size            = "Standard_DS3_v2"
-        node_count         = 3
-        enable_auto_scaling = true
-      }
+```hcl
+variable "node_pools" {
+  type = map(object({
+    vm_size            = string
+    node_count         = number
+    enable_auto_scaling = bool
+  }))
+  default = {
+    system = {
+      vm_size            = "Standard_DS2_v2"
+      node_count         = 2
+      enable_auto_scaling = false
+    }
+    user = {
+      vm_size            = "Standard_DS3_v2"
+      node_count         = 3
+      enable_auto_scaling = true
     }
   }
+}
 
-  resource "azurerm_kubernetes_cluster_node_pool" "pool" {
+resource "azurerm_kubernetes_cluster_node_pool" "pool" {
     for_each            = var.node_pools
     name                = each.key
     vm_size             = each.value.vm_size
     node_count          = each.value.node_count
     enable_auto_scaling = each.value.enable_auto_scaling
-  }   
-  ```   
-  * 👉 Here, you have a map (unordered keys: string, values: object) containing objects (structured configs). That’s nesting.
+}   
+```   
+* 👉 Here, you have a map (unordered keys: string, values: object) containing objects (structured configs). That’s nesting.
 
 * Now let's see about Complex Data Types    
 
