@@ -213,7 +213,6 @@ resource "azurerm_virtual_machine" "vm" {
   - **Implication:** You can access elements by their position (index).
   - **Types:** list, tuple.
   - **Usage:** When order matters (e.g., priority, sequence).
-
   ```hcl
   variable "ports" {
     type    = list(number)
@@ -274,9 +273,7 @@ resource "azurerm_virtual_machine" "vm" {
   ```   
 * 👉 Here, you have a map (unordered keys: string, values: object) containing objects (structured configs). That’s nesting.
 
-* Now let's see about Complex Data Types    
-
-* **List (Ordered,Same Type)**
+##### 1. List (Ordered, Same Type)
 * Ordered collection of values of the same type.
 * **Used For:**
     * Defining NSG inbound ports with priority.
@@ -292,7 +289,7 @@ variable "allowed_ports" {
     * Access elements by index (e.g., list[0], list[1]).
     * Useful when order matters (e.g., priority, sequence).
 
-* **Set (Unordered,Same Type)**
+##### 2. Set (Unordered, Same Type)
 * Unordered collection of values of the same type.
 * **Used For:**
     * Defining NSG inbound ports with priority.
@@ -302,14 +299,13 @@ variable "unique_ports" {
   type    = set(number)
   default = [22, 22, 443] # becomes {22, 443}
 }
-
 ```
 * **Key Points:**
     * Unordered collection.
     * No duplicates allowed.
     * Useful when order doesn't matter (e.g., unique values).
 
-* **Tuple (Ordered, Different Types)**
+##### 3. Tuple (Ordered, Different Types)
 * Ordered collection of values of different types.
 * **Used For:**
     * Defining VM configuration (size, count, auto-scaling).
@@ -320,14 +316,13 @@ variable "vm_config" {
   type    = tuple([string, number, bool])
   default = ["Standard_DS1_v2", 2, true]
 }
-
 ```
 * **Key Points:**   
     * Preserves order.
     * Access elements by index (e.g., tuple[0], tuple[1]).
     * Useful when order matters (e.g., priority, sequence).
 
-* **Map (Unordered, Key-Value, Same Type)**
+##### 4. Map (Unordered, Key-Value, Same Type)
 * Unordered key-value pairs with same-type values.
 * **Used For:**
     * Defining resource tags (environment, owner).
@@ -340,30 +335,34 @@ variable "tags" {
     owner       = "srikanth"
   }
 }
-
 ```
 * **Key Points:**
     * Keys are strings.
     * Values must be same type.
 
-5. **Object (Ordered, Key-Value, Mixed Type)**
+##### 5. Object (Ordered, Key-Value, Mixed Type)
 * Ordered collection of key-value pairs.
 * **Used For:**
-    * Defining NSG inbound ports with priority.
-    * Listing availability zones for VMs.
+    * Defining structured configurations like VM settings.
+    * Representing a single resource's properties.
 ```hcl
-variable "allowed_ports" {
-  type    = object({
-    port    = number
-    protocol = string
+variable "vm_profile" {
+  type = object({
+    size  = string
+    count = number
+    zone  = string
   })
-  default = {22 = "tcp", 80 = "tcp", 443 = "tcp"}
+  default = {
+    size  = "Standard_DS1_v2"
+    count = 2
+    zone  = "1"
+  }
 }
 ```
 * **Key Points:**
-    * Preserves order.
-    * Access elements by index (e.g., object[0], object[1]).
-    * Useful when order matters (e.g., priority, sequence).
+    * Fixed set of named attributes.
+    * Access elements by key (e.g., object.size, object.count).
+    * Useful for structured data with known keys.
 
 ### 1.5 Passing Values to Input Variables
 **terraform.tfvars**
