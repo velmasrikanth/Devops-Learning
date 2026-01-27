@@ -208,7 +208,7 @@ resource "azurerm_virtual_machine" "vm" {
 * First we will see what is Ordered and Unordered and Nested
 * 📚 **Ordered** vs **Unordered** vs **Nested**
 
-1. **Ordered**
+* **Ordered**
   - **Definition:** The sequence of elements matters. Terraform preserves the order you define.
   - **Implication:** You can access elements by their position (index).
   - **Types:** list, tuple.
@@ -223,7 +223,7 @@ resource "azurerm_virtual_machine" "vm" {
   ```
 * 👉 If you loop over this list, the rules will be created in the same order. Useful when priority or sequence matters.
 
-2. **Unordered**
+* **Unordered**
   - **Definition:** The sequence of elements doesn't matter. Terraform doesn't preserve the order.
   - **Implication:** You can't access elements by position (index).
   - **Types:** `set`, `map`, `object`.
@@ -238,7 +238,7 @@ resource "azurerm_virtual_machine" "vm" {
 * 👉 If you loop over this set, the order might be different each time. Useful when order doesn't matter.
 * 👉 Terraform doesn’t care about order here. You just know the set contains {10.0.0.0/24, 10.0.1.0/24, 10.0.2.0/24}. Perfect when uniqueness is more important than order.
 
-3. **Nested**
+* **Nested**
   - **Definition:** - Nested means combining one complex type inside another (like a hierarchy).
   - **Implication:**  Lets you model real‑world structures (e.g., AKS node pools, VM configs).
   - **Types:**  Any complex type can be nested (e.g.,`map(object(...))`, `list(object(...))`)
@@ -276,7 +276,7 @@ resource "azurerm_virtual_machine" "vm" {
 
 * Now let's see about Complex Data Types    
 
-1. **List (Ordered,Same Type)**
+* **List (Ordered,Same Type)**
 * Ordered collection of values of the same type.
 * **Used For:**
     * Defining NSG inbound ports with priority.
@@ -292,7 +292,7 @@ variable "allowed_ports" {
     * Access elements by index (e.g., list[0], list[1]).
     * Useful when order matters (e.g., priority, sequence).
 
-2. **Set (Unordered,Same Type)**
+* **Set (Unordered,Same Type)**
 * Unordered collection of values of the same type.
 * **Used For:**
     * Defining NSG inbound ports with priority.
@@ -309,7 +309,7 @@ variable "unique_ports" {
     * No duplicates allowed.
     * Useful when order doesn't matter (e.g., unique values).
 
-3. **Tuple (Ordered, Different Types)**
+* **Tuple (Ordered, Different Types)**
 * Ordered collection of values of different types.
 * **Used For:**
     * Defining VM configuration (size, count, auto-scaling).
@@ -322,12 +322,12 @@ variable "vm_config" {
 }
 
 ```
-* **Key Points:**
+* **Key Points:**   
     * Preserves order.
     * Access elements by index (e.g., tuple[0], tuple[1]).
     * Useful when order matters (e.g., priority, sequence).
 
-4. **Map (Unordered, Key-Value, Same Type)**
+* **Map (Unordered, Key-Value, Same Type)**
 * Unordered key-value pairs with same-type values.
 * **Used For:**
     * Defining resource tags (environment, owner).
