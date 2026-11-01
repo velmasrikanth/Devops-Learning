@@ -48,13 +48,44 @@ body {
   background: var(--md-accent-fg-color, #3b4b8f);
 }
 
-/* Make the content area stand out: white card with subtle shadow */
+/* Make the content area stand out: white card with subtle shadow.
+   Body copy must stay dark: the white card is used in both palettes,
+   and slate mode otherwise paints paragraphs in a near-white color. */
 .md-typeset {
   background: #ffffff;
-  /* content card background */
+  color: #1b1b1f;
   border-radius: 6px;
   box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
   padding: 2rem;
+}
+
+.md-typeset p,
+.md-typeset li,
+.md-typeset ol,
+.md-typeset ul,
+.md-typeset td,
+.md-typeset th,
+.md-typeset dd,
+.md-typeset dt,
+.md-typeset blockquote,
+.md-typeset caption,
+.md-typeset figcaption {
+  color: #1b1b1f;
+  opacity: 1;
+}
+
+.md-typeset a {
+  color: #1a237e;
+}
+
+.md-typeset a:hover,
+.md-typeset a:focus {
+  color: #0d1457;
+}
+
+[data-md-color-scheme="slate"] .md-typeset {
+  color: #1b1b1f;
+  background: #ffffff;
 }
 
 /* On very small screens, reduce padding so content fits */
@@ -120,6 +151,13 @@ pre ::selection {
   margin-top: 1.5em;
   border-bottom: 1px dotted #e0e0e0;
   padding-bottom: 0.3em;
+}
+
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  color: #1a237e;
 }
 
 /* Layout Wideners */
