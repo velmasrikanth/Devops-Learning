@@ -336,11 +336,12 @@ variable "tags" {
   }
 }
 ```
+
 * **Key Points:**
     * Keys are strings.
     * Values must be same type.
 
-##### 5. Object (Ordered, Key-Value, Mixed Type)
+##### 5. Object (Un Ordered, Key-Value, Mixed Type)
 * Ordered collection of key-value pairs.
 * **Used For:**
     * Defining structured configurations like VM settings.
