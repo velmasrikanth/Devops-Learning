@@ -9,19 +9,20 @@ edit_uri: edit/main/docs/ # Allows users to click 'Edit' and go straight to the 
 theme:
   name: material
   # custom_dir: docs/overrides
-  logo: images/devops.png  # Path to your logo image
+  logo: images/logo.svg
+  favicon: images/logo.svg
   palette:
     - scheme: default
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/toggle-switch-off-outline
+        icon: material/weather-night
         name: Switch to dark mode
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/toggle-switch
+        icon: material/weather-sunny
         name: Switch to light mode
 
   
@@ -34,7 +35,7 @@ theme:
     - navigation.top
     - navigation.instant
     - navigation.tracking
-    # - toc.integrate # Puts the Table of Contents right next to the content
+    - toc.integrate
     - toc.follow
     - content.code.copy
     - content.code.annotate

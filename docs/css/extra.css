@@ -1,199 +1,249 @@
-/* Custom logo sizing for MkDocs Material theme */
+/* Light reading theme. Header, page, and side navigation share warm paper tones. */
 
-/* Desktop / default: larger logo */
-.md-header-nav__title img,
-.md-header__logo img,
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #f7f3ec;
+  --md-primary-fg-color--light: #fffdf9;
+  --md-primary-fg-color--dark: #ebe4d8;
+  --md-primary-bg-color: #24332e;
+  --md-primary-bg-color--light: #4d635a;
+  --md-accent-fg-color: #2a6b58;
+  --md-accent-fg-color--transparent: rgba(42, 107, 88, 0.12);
+  --md-accent-bg-color: #fffdf9;
+  --md-default-bg-color: #f3efe6;
+  --md-default-fg-color: #2a2824;
+  --md-default-fg-color--light: #5e584f;
+  --md-default-fg-color--lighter: #8a8378;
+  --md-default-fg-color--lightest: #e4ddd2;
+  --md-typeset-color: #2c2a26;
+  --md-typeset-a-color: #1f6b56;
+  --md-code-bg-color: #efeae1;
+  --md-code-fg-color: #24332e;
+  --md-footer-bg-color: #efeae1;
+  --md-footer-bg-color--dark: #e7e0d4;
+  --md-footer-fg-color: #3d4a44;
+  --md-footer-fg-color--light: #5e6b64;
+  --md-footer-fg-color--lighter: #7d8a83;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1c2824;
+  --md-primary-fg-color--light: #2a3b35;
+  --md-primary-fg-color--dark: #141e1b;
+  --md-primary-bg-color: #f3efe6;
+  --md-accent-fg-color: #8fbfa8;
+  --md-default-bg-color: #161e1b;
+  --md-default-fg-color: #ece7df;
+  --md-typeset-color: #ece7df;
+  --md-typeset-a-color: #9dceba;
+  --md-footer-bg-color: #121a17;
+  --md-footer-fg-color: #d9d3c8;
+}
+
+/* Compact header mark. The previous 200px logo stretched the banner. */
+.md-header__button.md-logo {
+  padding: 0.2rem;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg,
 .md-logo img,
-.md-header .md-logo {
-  height: 200px !important;
-  /* change this value to make it bigger/smaller */
-  width: auto !important;
-  max-height: 200px !important;
+.md-logo svg {
+  height: 2rem !important;
+  width: 2rem !important;
+  max-height: 2rem !important;
+  border-radius: 6px;
 }
 
-/* If your theme uses a different class, also target common variants */
-.site-logo img,
-.brand img {
-  height: 64px !important;
-  width: auto !important;
+.md-header {
+  background: var(--md-primary-fg-color);
+  box-shadow: none;
+  border-bottom: 1px solid #e4ddd2;
 }
 
-/* Mobile: reduce size so header doesn't overflow */
-@media (max-width: 767px) {
-
-  .md-header-nav__title img,
-  .md-header__logo img,
-  .md-logo img {
-    height: 40px !important;
-    max-height: 40px !important;
-  }
+[data-md-color-scheme="slate"] .md-header {
+  border-bottom-color: #2c3b36;
 }
 
-/* If the logo appears small because of padding/scale, ensure image isn't constrained */
-.md-header .md-logo img {
-  display: block;
-  object-fit: contain;
+.md-header__title,
+.md-header__topic,
+.md-header__button,
+.md-search__input {
+  color: var(--md-primary-bg-color);
 }
 
-/* Site background and content styling: change these colors to taste. */
-/* Page background (behind the content) */
+.md-tabs {
+  background: var(--md-primary-fg-color);
+  border-bottom: 1px solid #e4ddd2;
+}
+
+[data-md-color-scheme="default"] .md-tabs__link {
+  color: #4a554f;
+  opacity: 1;
+}
+
+[data-md-color-scheme="default"] .md-tabs__link--active,
+[data-md-color-scheme="default"] .md-tabs__link:hover {
+  color: #1f6b56;
+}
+
+[data-md-color-scheme="default"] .md-tabs__item--active {
+  color: #1f6b56;
+}
+
 html,
 body {
-  background: #1573d1;
-  /* soft light-gray background instead of white */
+  background: var(--md-default-bg-color);
 }
 
-/* Keep header area using theme background (no change) */
-.md-header {
-  background: var(--md-accent-fg-color, #3b4b8f);
+/* One sidebar: the right-hand outline is folded into the left nav. */
+.md-sidebar--secondary {
+  display: none;
 }
 
-/* Make the content area stand out: white card with subtle shadow.
-   Body copy must stay dark: the white card is used in both palettes,
-   and slate mode otherwise paints paragraphs in a near-white color. */
-.md-typeset {
-  background: #ffffff;
-  color: #1b1b1f;
-  border-radius: 6px;
-  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
-  padding: 2rem;
+.md-sidebar--primary {
+  width: 15.2rem;
 }
 
-.md-typeset p,
-.md-typeset li,
-.md-typeset ol,
-.md-typeset ul,
-.md-typeset td,
-.md-typeset th,
-.md-typeset dd,
-.md-typeset dt,
-.md-typeset blockquote,
-.md-typeset caption,
-.md-typeset figcaption {
-  color: #1b1b1f;
+[data-md-color-scheme="default"] .md-sidebar {
+  background: transparent;
+}
+
+[data-md-color-scheme="default"] .md-nav__title {
+  color: #24332e;
+  font-weight: 700;
+}
+
+[data-md-color-scheme="default"] .md-nav__link {
+  color: #3e4742;
+}
+
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active,
+.md-nav__item--active > .md-nav__link {
+  color: #1f6b56 !important;
+  font-weight: 700;
+  background: rgba(42, 107, 88, 0.1);
+  border-left: 3px solid #2a6b58;
+  border-radius: 0 6px 6px 0;
+  padding-left: 0.6rem;
+}
+
+[data-md-color-scheme="slate"] .md-nav__link--active,
+[data-md-color-scheme="slate"] .md-nav__item--active > .md-nav__link {
+  color: #9dceba !important;
+  background: rgba(143, 191, 168, 0.12);
+  border-left-color: #8fbfa8;
+}
+
+/* Reading column: warm page, white sheet, wider once the second sidebar is gone. */
+.md-grid {
+  max-width: 78rem;
+}
+
+.md-content {
+  margin-right: 0;
+}
+
+[data-md-color-scheme="default"] .md-typeset {
+  background: #fffdf9;
+  color: #2c2a26;
+  border: 1px solid #e7e1d6;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(36, 51, 46, 0.05);
+  padding: 1.6rem 2rem 2.2rem;
+}
+
+[data-md-color-scheme="default"] .md-typeset p,
+[data-md-color-scheme="default"] .md-typeset li,
+[data-md-color-scheme="default"] .md-typeset ol,
+[data-md-color-scheme="default"] .md-typeset ul,
+[data-md-color-scheme="default"] .md-typeset td,
+[data-md-color-scheme="default"] .md-typeset th,
+[data-md-color-scheme="default"] .md-typeset dd,
+[data-md-color-scheme="default"] .md-typeset dt,
+[data-md-color-scheme="default"] .md-typeset blockquote,
+[data-md-color-scheme="default"] .md-typeset caption,
+[data-md-color-scheme="default"] .md-typeset figcaption {
+  color: #2c2a26;
   opacity: 1;
 }
 
 .md-typeset a {
-  color: #1a237e;
+  color: #1f6b56;
 }
 
 .md-typeset a:hover,
 .md-typeset a:focus {
-  color: #0d1457;
+  color: #174e3e;
 }
 
-[data-md-color-scheme="slate"] .md-typeset {
-  color: #1b1b1f;
-  background: #ffffff;
+[data-md-color-scheme="slate"] .md-typeset a {
+  color: #9dceba;
 }
 
-/* On very small screens, reduce padding so content fits */
-@media (max-width: 767px) {
-  .md-typeset {
-    padding: 1rem;
-    border-radius: 0;
-    box-shadow: none;
-    background: transparent;
-    /* allow full-bleed content on mobile */
-  }
-}
-
-/* If you prefer a darker page background, replace #f4f6f8 with another hex. */
-
-/* Improve text selection visibility site-wide */
-::selection {
-  background: #283593;
-  /* Dark Indigo */
-  color: #ffffff;
-}
-
-::-moz-selection {
-  background: #283593;
-  /* Dark Indigo */
-  color: #ffffff;
-}
-
-/* Make sure selection in specific regions is also clearly visible */
-.md-typeset ::selection,
-.md-typeset *::selection,
-.md-sidebar ::selection,
-.md-nav ::selection,
-.md-main ::selection,
-code ::selection,
-pre ::selection {
-  background: #283593;
-  color: #ffffff;
-}
-
-/* If the sidebar has a dark background, use a lighter, semi-transparent white for selection there */
-
-
-.md-sidebar ::selection,
-.md-nav ::selection {
-  background: rgba(255, 255, 255, 0.18);
-  color: inherit;
-}
-
-/* Heading Improvements */
 .md-typeset h1 {
-  color: #1a237e;
-  /* Deep Indigo */
+  color: #24332e;
   font-weight: 700;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid #e7e1d6;
   padding-bottom: 0.3em;
 }
 
 .md-typeset h2 {
-  color: #283593;
-  /* Indigo */
-  font-weight: 600;
+  color: #2a6b58;
+  font-weight: 650;
   margin-top: 1.5em;
-  border-bottom: 1px dotted #e0e0e0;
-  padding-bottom: 0.3em;
+  border-bottom: 1px solid #e7e1d6;
+  padding-bottom: 0.25em;
 }
 
 .md-typeset h3,
 .md-typeset h4,
 .md-typeset h5,
 .md-typeset h6 {
-  color: #1a237e;
+  color: #24332e;
 }
 
-/* Layout Wideners */
-.md-grid {
-  max-width: 1400px;
-  /* Make the page much wider */
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3 {
+  color: #ece7df;
+  border-bottom-color: #2c3b36;
 }
 
-/* Specific Selection for Headings */
-h1::selection,
-h2::selection,
-h3::selection,
-h4::selection,
-h5::selection,
-h6::selection {
-  background: #1a237e;
-  /* Even darker indigo */
-  color: #ffd700;
-  /* Gold text */
+[data-md-color-scheme="default"] .md-footer {
+  background: #efeae1;
+  color: #3d4a44;
 }
 
-/* Table of Contents (Right Sidebar) Active Item */
-.md-nav__link--active,
-.md-nav__item .md-nav__link--active {
-  color: #ffffff !important;
-  /* White text for contrast against blue bg */
-  font-weight: bold !important;
-  border-left: 4px solid #ffd700;
-  /* Gold marker */
-  background: rgba(0, 0, 0, 0.1);
-  /* Subtle dark backing */
-  padding-left: 0.5em;
+::selection,
+.md-typeset ::selection,
+.md-typeset *::selection,
+.md-main ::selection,
+code ::selection,
+pre ::selection {
+  background: #d5ebe3;
+  color: #1c2b26;
 }
 
-/* Main Navigation (Left Sidebar) Active Item */
-.md-nav__item--active>.md-nav__link {
-  color: #283593 !important;
-  font-weight: bold;
+.md-sidebar ::selection,
+.md-nav ::selection {
+  background: #d5ebe3;
+  color: #1c2b26;
+}
+
+@media (max-width: 76.2344em) {
+  .md-nav--primary .md-nav__title {
+    background: #f7f3ec;
+    color: #24332e;
+  }
+}
+
+@media (max-width: 767px) {
+  .md-typeset {
+    padding: 1rem;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
 }
