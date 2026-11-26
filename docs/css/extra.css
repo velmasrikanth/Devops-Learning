@@ -181,6 +181,62 @@ body {
   color: #9dceba;
 }
 
+/* Same bullet style on every topic: filled square, then a ring, then a dot. */
+.md-typeset ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 1.45rem;
+}
+
+.md-typeset ul > li:not(.task-list-item) {
+  position: relative;
+  margin-left: 0.15rem;
+  padding-left: 0.15rem;
+}
+
+.md-typeset ul > li:not(.task-list-item)::before {
+  content: "";
+  position: absolute;
+  left: -1.05rem;
+  top: 0.55em;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 2px;
+  background: #2a6b58;
+}
+
+.md-typeset ul ul > li:not(.task-list-item)::before {
+  top: 0.5em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid #2a6b58;
+}
+
+.md-typeset ul ul ul > li:not(.task-list-item)::before {
+  top: 0.58em;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  border: none;
+  background: #2a6b58;
+}
+
+[data-md-color-scheme="slate"] .md-typeset ul > li:not(.task-list-item)::before {
+  background: #8fbfa8;
+}
+
+[data-md-color-scheme="slate"] .md-typeset ul ul > li:not(.task-list-item)::before {
+  background: transparent;
+  border-color: #8fbfa8;
+}
+
+[data-md-color-scheme="slate"] .md-typeset ul ul ul > li:not(.task-list-item)::before {
+  background: #8fbfa8;
+  border: none;
+}
+
 .md-typeset h1 {
   color: #24332e;
   font-weight: 700;
@@ -236,6 +292,59 @@ pre ::selection {
     background: #f7f3ec;
     color: #24332e;
   }
+}
+
+/* Sidebar groups and the headings under the current page: click opens, click again closes. */
+.md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link:not(.md-nav__container),
+.md-nav__item--section > .md-nav__link:not(.md-nav__container) {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.md-nav__item--section > .md-nav__link .md-icon {
+  display: block;
+}
+
+.md-nav__item--section > .md-nav {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 0;
+}
+
+.md-nav__item--section > .md-nav__toggle:checked ~ .md-nav {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+.md-nav--primary .md-nav__link[for="__toc"] {
+  display: flex;
+  cursor: pointer;
+}
+
+.md-nav--primary .md-nav__link[for="__toc"] .md-icon::after {
+  content: "";
+}
+
+.md-nav--primary .md-nav__link[for="__toc"] + .md-nav__link {
+  display: none;
+}
+
+.md-nav--primary .md-nav__link[for="__toc"] ~ .md-nav,
+.md-nav--integrated > .md-nav__list > .md-nav__item--active .md-nav--secondary {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 0;
+}
+
+#__toc:checked ~ .md-nav,
+.md-nav--integrated > .md-nav__list > .md-nav__item--active #__toc:checked ~ .md-nav--secondary {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  margin-bottom: 0.75rem;
 }
 
 @media (max-width: 767px) {

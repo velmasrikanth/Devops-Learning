@@ -109,6 +109,10 @@ plugins:
 nav:
   - Home: 
     - Home: index.md
+  - Linux & Shell Scripting:
+    - 01. Linux Basics: linux/01-linux-basics.md
+    - 02. Files and Permissions: linux/02-files-permissions.md
+    - 03. Shell Scripting: linux/03-shell-scripting.md
   - 🐳 Docker Fundamentals:
     - 01. Docker Basics: docker/01-docker-basics.md
     - 02. Docker Installation: docker/02-docker-installation.md
@@ -116,10 +120,6 @@ nav:
     - 04. Docker Images: docker/04-docker-images.md
     - 05. Docker Containers: docker/05-docker-containers.md
 
-  - ☁️ Kode kloud 100 Days:
-    - 01. Azure Cloud-100 Days: kodekloud/01-100days-azure.md
-    - 02. DevOps-100 Days: kodekloud/02-100days-devops.md
-    - 03. Kubernetes-100 Days: kodekloud/03-100days-kubernetes.md
   - ☸️ Kubernetes Deep Dive:
     - 00. Introduction: kubernetes/01-k8s-introduction.md
     - 01. Core Concepts (Deep Dive): kubernetes/02-k8s-concepts.md
